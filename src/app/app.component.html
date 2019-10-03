@@ -1,0 +1,31 @@
+<app-header *ngIf="isPrj"></app-header>
+
+<div class="container" *ngIf="isPrj">
+  <div class="row">
+      <div class="col-md-12">
+        <app-recipes></app-recipes>
+        <app-shopping-list></app-shopping-list>
+      </div>
+  </div>
+</div>
+<div class="container" *ngIf="!isPrj">
+  <app-cockpit
+    (serverCreated)="onServerCreated($event)"
+    (bpCreated)="onBlueprintServerCreated($event)"></app-cockpit>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-server-element 
+        *ngFor="let serverElement of serverElements"
+        [srvElement]="serverElement"></app-server-element>
+    </div>
+  </div>
+  <!-- <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default" *ngFor="let element of serverElements">
+        <div class="panel-heading">{{ element.name }}</div>
+        <div class="panel-body" [ngStyle]="{'color': element.type === 'server' ? 'red' : 'green' }">{{ element.content }}</div>
+      </div>
+    </div>
+  </div> -->
+</div>
